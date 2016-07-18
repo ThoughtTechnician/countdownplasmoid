@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Countdown
+Comment=Count down the moments until an upcoming event!
+Encoding=UTF-8
+Icon=face-in-love
+ServiceTypes=Plasma/Applet
+Type=Service
+X-KDE-PluginInfo-Name=com.wordpress.simpledevelopments.countdownplasmoid
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/countdown.qml
