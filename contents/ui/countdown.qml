@@ -52,11 +52,6 @@ Item {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 24
-	    Component.onCompleted: {
-		var myText = "test: " + plasmoid.readConfig("timer_sfx_filepath");
-		postCountdown.text = myText;
-
-	    }
         }
     }
 
