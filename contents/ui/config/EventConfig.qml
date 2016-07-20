@@ -14,24 +14,21 @@ import ".."
 
 Item {
     id: timePage
+    property alias calendar_date: dateChooser.selectedDate;
+    property alias selected_title: titleField.text;
+    property alias selected_hours: hrsChooser.value;
+    property alias selected_mins: minsChooser.value;
+    property alias selected_secs: secsChooser.value;
 
-    property alias calendar_date: dateChooser.selectedDate
-
-    // Component.onCompleted: {
-    //     cfg_exampleBool = true
-    // }
-
+    Component.onCompleted: {
+         //cfg_exampleBool = true
+	 var event = new Date(Number(plasmoid.configuration.eventMoment));
+	 selected_hours = event.getHours();
+	 selected_mins = event.getMinutes();
+	 selected_secs = event.getSeconds();
+    }
 
     ColumnLayout {
-
-//        CheckBox {
-//            id: exampleBool
-//            text: i18n("Boolean")
-//        }
-//        SpinBox {
-//            id: exampleInt
-//            suffix: i18n(" units")
-//     	  }
    	Text {
             text: i18n("Title")
         }
@@ -61,7 +58,14 @@ Item {
 	       SpinBox {
 			id: secsChooser
 			maximumValue: 60
-	       }
+		}
+		Text {
+			text: " "
+		}
+		SpinBox {
+			id: tzChooser
+
+		}
        }
 
     }

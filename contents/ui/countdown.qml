@@ -3,8 +3,9 @@ import QtQuick.Layouts 1.2
 import QtQuick.Controls 1.5
 
 Item {
-    id: outside
+    id: myWindow
     
+    property alias thisWindow:myWindow;
     property variant eventMoment: plasmoid.configuration.eventMoment;//new Date(2016,7,7,9,0,0,0); 
     ColumnLayout {
         id: columnLayout1
@@ -54,6 +55,4 @@ Item {
             font.pixelSize: 24
         }
     }
-
-
 }
