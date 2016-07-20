@@ -19,14 +19,25 @@ Item {
     property alias selected_hours: hrsChooser.value;
     property alias selected_mins: minsChooser.value;
     property alias selected_secs: secsChooser.value;
+    property variant okay_button:  (parent.parent.parent.parent.parent.parent.parent.parent.parent.parent.children[1].children[0]);
 
     Component.onCompleted: {
          //cfg_exampleBool = true
 	 var event = new Date(Number(plasmoid.configuration.eventMoment));
+	 function saveConfig() {
+		 print("Saving Config....");
+		 //plasmoid.configuration.eventMoment = 
+	 }
+	 okay_button.clicked.connect(saveConfig);
+	 calendar_date = event;
 	 selected_hours = event.getHours();
 	 selected_mins = event.getMinutes();
 	 selected_secs = event.getSeconds();
+	 print("checking: " + okay_button.text);
     }
+//    okay_button.onClicked: {
+//	print("THIS IS SO TASSSSTTYYYYY");
+//    }
 
     ColumnLayout {
    	Text {
