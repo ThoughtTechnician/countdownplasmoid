@@ -54,5 +54,9 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 24
         }
+	Component.onCompleted: {
+		console.log("About to test things");
+
+	}
     }
 }

@@ -5,10 +5,26 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name=""/>
 
-   <group name="General">
+   <group name="Event">
      <entry name="eventMoment" type="String">
        <label>The event date being counted down to.</label>
        <default>1470574800000</default>
+     </entry>
+     <entry name="eventHours" type="Int">
+	<label>Hour of event</label>
+	<default>10</default>
+     </entry>
+     <entry name="eventMinutes" type="Int">
+	<label>Minutes of event</label>
+	<default>5</default>
+     </entry>
+     <entry name="eventSeconds" type="Int">
+	<label>Second of event</label>
+	<default>1</default>
+     </entry>
+     <entry name="eventTitle" type="String">
+	<label>The title of the event being counted down to.</label>
+	<default>Event Title</default>
      </entry>
    </group>
  

@@ -14,30 +14,18 @@ import ".."
 
 Item {
     id: timePage
-    property alias calendar_date: dateChooser.selectedDate;
-    property alias selected_title: titleField.text;
-    property alias selected_hours: hrsChooser.value;
-    property alias selected_mins: minsChooser.value;
-    property alias selected_secs: secsChooser.value;
-    property variant okay_button:  (parent.parent.parent.parent.parent.parent.parent.parent.parent.parent.children[1].children[0]);
+
+    property alias cfg_eventHours: hrsChooser.value
+    property alias cfg_eventMinutes: minsChooser.value
+    property alias cfg_eventSeconds: secsChooser.value
+    property alias cfg_eventTitle: titleField.text
 
     Component.onCompleted: {
-         //cfg_exampleBool = true
-	 var event = new Date(Number(plasmoid.configuration.eventMoment));
-	 function saveConfig() {
-		 print("Saving Config....");
-		 //plasmoid.configuration.eventMoment = 
-	 }
-	 okay_button.clicked.connect(saveConfig);
-	 calendar_date = event;
-	 selected_hours = event.getHours();
-	 selected_mins = event.getMinutes();
-	 selected_secs = event.getSeconds();
-	 print("checking: " + okay_button.text);
+    	console.log("hrsChooser.value: " + hrsChooser.value)
+    	console.log("minsChooser.value: " + minsChooser.value)
+    	console.log("secsChooser.value: " + secsChooser.value)
+    	console.log("titleField.text: " + titleField.text)
     }
-//    okay_button.onClicked: {
-//	print("THIS IS SO TASSSSTTYYYYY");
-//    }
 
     ColumnLayout {
    	Text {
@@ -45,12 +33,12 @@ Item {
         }
         TextField {
             id: titleField 
-            placeholderText: i18n("Title")
        }
        Calendar {
 	    id: dateChooser
        }
        RowLayout {
+	       
 	       SpinBox {
 			id: hrsChooser
 			maximumValue: 23
@@ -77,7 +65,24 @@ Item {
 			id: tzChooser
 
 		}
-       }
 
+       }
+       Button {
+		id: testButton
+		text: "TestButton"
+		width: 30
+		onClicked: {
+			console.log("putting value into myDate");
+			console.log("1: cfg_eventMoment: " + cfg_eventMoment);
+			//cfg_eventMoment = new Date(Number(plasmoid.configuration.eventMoment));
+			console.log("2: cfg_eventMoment: " + cfg_eventMoment);
+		}
+	}
+       TextField {
+            id: origField 
+    	}
+       TextField {
+            id: actualField 
+       }
     }
 }
