@@ -51,13 +51,6 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 24
     	}
-    	function configChanged() {
-		console.log("CONFIG CHANGED!!!!!!!!!!!!");
-	}
-	Component.onCompleted: {
-		//console.log("About to test things");
 
-plasmoid.addEventListener('ConfigChanged', configChanged);
-	}
     }
 }

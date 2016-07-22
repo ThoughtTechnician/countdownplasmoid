@@ -19,21 +19,6 @@ Item {
     property var eventMoment: new Date(cfg_eventDate)
     property alias cfg_eventTitle: titleField.text
 
-    Component.onCompleted: {
-    	//console.log("hrsChooser.value: " + hrsChooser.value);
-    	//console.log("minsChooser.value: " + minsChooser.value);
-    	//console.log("secsChooser.value: " + secsChooser.value);
-	//console.log("titleField.text: " + titleField.text);
-	//console.log("----------------------------");
-	//console.log("eventMoment: " + eventMoment);
-    }
-
-    function doThing(someDate, someValue) {
-	
-	someDate.setHours(someValue);
-
-    }
-
     ColumnLayout {
    	Text {
             text: i18n("Title")
@@ -57,10 +42,12 @@ Item {
 			id: hrsChooser
 			maximumValue: 23
 			value: eventMoment.getHours()
-	  	        onEditingFinished: {
-				eventMoment.setHours(value);
-				cfg_eventDate = eventMoment.toJSON();
-	      		}
+			onValueChanged: {
+				if(activeFocus) {
+					eventMoment.setHours(value);
+					cfg_eventDate = eventMoment.toJSON();
+				}
+			}
 
 		}
 		Text {
@@ -70,10 +57,12 @@ Item {
 			id: minsChooser
 			maximumValue: 60
 			value: eventMoment.getMinutes()
-	  	        onEditingFinished: {
-				eventMoment.setMinutes(value);
-				cfg_eventDate = eventMoment.toJSON();
-	      		}
+			onValueChanged: {
+				if(activeFocus) {
+					eventMoment.setMinutes(value);
+					cfg_eventDate = eventMoment.toJSON();
+				}
+			}
 		}
 		Text {
 			text: ":"
@@ -83,10 +72,12 @@ Item {
 			id: secsChooser
 			maximumValue: 60
 			value: eventMoment.getSeconds() 
-	  	        onEditingFinished: {
-				eventMoment.setSeconds(value);
-				cfg_eventDate = eventMoment.toJSON();
-	      		}
+			onValueChanged: {
+				if(activeFocus) {
+					eventMoment.setSeconds(value);
+					cfg_eventDate = eventMoment.toJSON();
+				}
+			}
 		}
 
        }
