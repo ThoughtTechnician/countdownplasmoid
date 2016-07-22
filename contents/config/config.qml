@@ -2,7 +2,7 @@
  ConfigModel {
      ConfigCategory {
           name: "Event"
-          icon: "plasma"
+          icon: "org.kde.plasma.analogclock"
           source: "config/EventConfig.qml"
      }
 }

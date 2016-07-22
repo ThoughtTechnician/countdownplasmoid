@@ -15,16 +15,29 @@ import ".."
 Item {
     id: timePage
 
-    property alias cfg_eventHours: hrsChooser.value
-    property alias cfg_eventMinutes: minsChooser.value
-    property alias cfg_eventSeconds: secsChooser.value
+    property int cfg_eventYear
+    property int cfg_eventMonth
+    property int cfg_eventDay
+    property string cfg_eventDate //: dateChooser.selectedDate
+    property var eventMoment: new Date(cfg_eventDate)//: new Date("2016-08-07T13:00:00.000Z")
+    property int cfg_eventHours //: hrsChooser.value
+    property int cfg_eventMinutes //: minsChooser.value
+    property int cfg_eventSeconds //: secsChooser.value
     property alias cfg_eventTitle: titleField.text
 
     Component.onCompleted: {
-    	console.log("hrsChooser.value: " + hrsChooser.value)
-    	console.log("minsChooser.value: " + minsChooser.value)
-    	console.log("secsChooser.value: " + secsChooser.value)
-    	console.log("titleField.text: " + titleField.text)
+    	//console.log("hrsChooser.value: " + hrsChooser.value);
+    	//console.log("minsChooser.value: " + minsChooser.value);
+    	//console.log("secsChooser.value: " + secsChooser.value);
+	//console.log("titleField.text: " + titleField.text);
+	//console.log("----------------------------");
+	//console.log("eventMoment: " + eventMoment);
+    }
+
+    function doThing(someDate, someValue) {
+	
+	someDate.setHours(someValue);
+
     }
 
     ColumnLayout {
@@ -36,12 +49,19 @@ Item {
        }
        Calendar {
 	    id: dateChooser
+	    selectedDate: eventMoment
        }
        RowLayout {
 	       
 	       SpinBox {
 			id: hrsChooser
 			maximumValue: 23
+			value: eventMoment.getHours()
+	  	        onEditingFinished: {
+				eventMoment.setHours(value);
+				cfg_eventDate = eventMoment.toJSON();
+	      		}
+
 		}
 		Text {
 			text: ":"
@@ -49,6 +69,11 @@ Item {
 	       SpinBox {
 			id: minsChooser
 			maximumValue: 60
+			value: eventMoment.getMinutes()
+	  	        onEditingFinished: {
+				eventMoment.setMinutes(value);
+				cfg_eventDate = eventMoment.toJSON();
+	      		}
 		}
 		Text {
 			text: ":"
@@ -57,13 +82,11 @@ Item {
 	       SpinBox {
 			id: secsChooser
 			maximumValue: 60
-		}
-		Text {
-			text: " "
-		}
-		SpinBox {
-			id: tzChooser
-
+			value: eventMoment.getSeconds() 
+	  	        onEditingFinished: {
+				eventMoment.setSeconds(value);
+				cfg_eventDate = eventMoment.toJSON();
+	      		}
 		}
 
        }
@@ -72,10 +95,17 @@ Item {
 		text: "TestButton"
 		width: 30
 		onClicked: {
-			console.log("putting value into myDate");
-			console.log("1: cfg_eventMoment: " + cfg_eventMoment);
-			//cfg_eventMoment = new Date(Number(plasmoid.configuration.eventMoment));
-			console.log("2: cfg_eventMoment: " + cfg_eventMoment);
+//			console.log("putting value into myDate");
+//			console.log("1: eventMoment: " + eventMoment);
+			//eventMoment = new Date(Number(plasmoid.configuration.eventMoment));
+//			console.log("2: eventMoment: " + eventMoment);
+			//console.log("plasmoid.configuration.eventMoment: " + plasmoid.configuration.eventMoment);
+			//plasmoid.configuration.eventMoment = new Date("2016-08-07T13:00:00.000Z");
+			//eventMoment = new Date("2016-08-07T13:00:00.000Z");
+			//console.log("plasmoid.configuration.eventMoment2: " + plasmoid.configuration.eventMoment);
+			//cfg_eventYear = 3017;
+			console.log("selectedDate: " + dateChooser.selectedDate);
+    			console.log("eventMoment: " + eventMoment);
 		}
 	}
        TextField {

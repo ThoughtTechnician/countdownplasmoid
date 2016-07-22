@@ -6,7 +6,7 @@ Item {
     id: myWindow
     
     property alias thisWindow:myWindow;
-    property variant eventMoment: plasmoid.configuration.eventMoment;//new Date(2016,7,7,9,0,0,0); 
+    property variant eventMoment: new Date(2016,7,7,9,0,0,0); 
     ColumnLayout {
         id: columnLayout1
         anchors.fill: parent
@@ -55,7 +55,7 @@ Item {
             font.pixelSize: 24
         }
 	Component.onCompleted: {
-		console.log("About to test things");
+		//console.log("About to test things");
 
 	}
     }
