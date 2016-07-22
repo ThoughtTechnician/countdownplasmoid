@@ -13,7 +13,6 @@ Item {
         Text {
             id: countdown
             text: qsTr("0 Years 0 Days 0 Hours 0 Minutes 0 Seconds " + (plasmoid == null))
-            //text: JSON.stringify(plasmoid)
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 24
@@ -29,8 +28,6 @@ Item {
 		    	var yrs =
 			    Math.floor(dif / 1000 / 60 / 60 / 24 / 365);
 
-			//countdown.text = savedDate;
-		    	//countdown.text = plasmoid.readConfig("configtext");
 			countdown.text = //eventMoment;   
 			yrs + " Years " + days + " days " + hrs + " hours "
 	       		    + mins + " minutes " + secs + " seconds ";
@@ -53,10 +50,14 @@ Item {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 24
-        }
+    	}
+    	function configChanged() {
+		console.log("CONFIG CHANGED!!!!!!!!!!!!");
+	}
 	Component.onCompleted: {
 		//console.log("About to test things");
 
+plasmoid.addEventListener('ConfigChanged', configChanged);
 	}
     }
 }

@@ -15,14 +15,8 @@ import ".."
 Item {
     id: timePage
 
-    property int cfg_eventYear
-    property int cfg_eventMonth
-    property int cfg_eventDay
-    property string cfg_eventDate //: dateChooser.selectedDate
-    property var eventMoment: new Date(cfg_eventDate)//: new Date("2016-08-07T13:00:00.000Z")
-    property int cfg_eventHours //: hrsChooser.value
-    property int cfg_eventMinutes //: minsChooser.value
-    property int cfg_eventSeconds //: secsChooser.value
+    property string cfg_eventDate
+    property var eventMoment: new Date(cfg_eventDate)
     property alias cfg_eventTitle: titleField.text
 
     Component.onCompleted: {
@@ -50,6 +44,12 @@ Item {
        Calendar {
 	    id: dateChooser
 	    selectedDate: eventMoment
+	    onClicked: {
+		    eventMoment.setFullYear(date.getFullYear());
+		    eventMoment.setMonth(date.getMonth());
+		    eventMoment.setDate(date.getDate());
+		    cfg_eventDate = eventMoment.toJSON();
+	    }
        }
        RowLayout {
 	       
@@ -95,15 +95,6 @@ Item {
 		text: "TestButton"
 		width: 30
 		onClicked: {
-//			console.log("putting value into myDate");
-//			console.log("1: eventMoment: " + eventMoment);
-			//eventMoment = new Date(Number(plasmoid.configuration.eventMoment));
-//			console.log("2: eventMoment: " + eventMoment);
-			//console.log("plasmoid.configuration.eventMoment: " + plasmoid.configuration.eventMoment);
-			//plasmoid.configuration.eventMoment = new Date("2016-08-07T13:00:00.000Z");
-			//eventMoment = new Date("2016-08-07T13:00:00.000Z");
-			//console.log("plasmoid.configuration.eventMoment2: " + plasmoid.configuration.eventMoment);
-			//cfg_eventYear = 3017;
 			console.log("selectedDate: " + dateChooser.selectedDate);
     			console.log("eventMoment: " + eventMoment);
 		}
@@ -111,8 +102,5 @@ Item {
        TextField {
             id: origField 
     	}
-       TextField {
-            id: actualField 
-       }
     }
 }
